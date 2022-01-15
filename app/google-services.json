@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932572218550",
+    "project_id": "acharya-chat",
+    "storage_bucket": "acharya-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932572218550:android:98817608e7cafc0108d217",
+        "android_client_info": {
+          "package_name": "com.thundersharp.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932572218550-9jb766firrgaj3pb39qufs6gotnc8j0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhiTlZLcjXxDis_XTZLEYFIY67woGToRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932572218550-9jb766firrgaj3pb39qufs6gotnc8j0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
