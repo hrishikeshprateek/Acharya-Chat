@@ -8,4 +8,39 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#03A9F4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth_bold_italic"
+            android:text="Acharya Chat"
+            android:textColor="#ffff"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/custom_toolbar">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#03A9F4"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#fff"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#3EE2F6"
+            app:tabTextColor="#FFFFFF" />
+    </androidx.viewpager.widget.ViewPager>
+
+
 </RelativeLayout>

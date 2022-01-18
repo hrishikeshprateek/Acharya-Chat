@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/profile_pic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/circular_text_view"
+        android:text="A"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:textSize="23sp"/>
+
+    <LinearLayout
+        android:layout_toEndOf="@id/profile_pic"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Hrishikesh Prateek"
+            android:textColor="#000"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="hrishikesh@gmail.com"
+            android:textColor="#5C5B5B"
+            android:layout_marginTop="3dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

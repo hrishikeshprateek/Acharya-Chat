@@ -1,10 +1,12 @@
 package com.thundersharp.test.ui;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +22,7 @@ public class Login extends AppCompatActivity {
 
     private AppCompatButton login,register;
     private EditText email,password;
-
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,12 @@ public class Login extends AppCompatActivity {
         register = findViewById(R.id.register_btn);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_progress_bar,null);
+        builder.setView(view);
+        dialog = builder.create();
 
 
         register.setOnClickListener(r -> {
@@ -44,12 +52,14 @@ public class Login extends AppCompatActivity {
                 if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
                     Toast.makeText(Login.this, "All params are required", Toast.LENGTH_SHORT).show();
                 }else {
+                    dialog.show();
                     new LoginHelper(Login.this)
                             .setPassword(password.getText().toString())
                             .setUserId(email.getText().toString())
                             .attachLoginObserver(new LoginObserver.EmailLogin() {
                                 @Override
                                 public void onLoginSuccess() {
+                                    dialog.dismiss();
                                     Toast.makeText(Login.this, "Welcome "+FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Login.this, MainActivity.class));
                                     finish();
@@ -57,6 +67,7 @@ public class Login extends AppCompatActivity {
 
                                 @Override
                                 public void onLoginFailure(Exception e) {
+                                    dialog.dismiss();
                                     Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
