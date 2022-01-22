@@ -1,15 +1,18 @@
 package com.thundersharp.test.core.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thundersharp.test.R;
 import com.thundersharp.test.core.model.UserDataModel;
+import com.thundersharp.test.ui.ChatActivity;
 
 import org.w3c.dom.Text;
 
@@ -53,6 +56,13 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
             name = itemView.findViewById(R.id.name);
             email = itemView.findViewById(R.id.email);
             profile_pic = itemView.findViewById(R.id.profile_pic);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ChatActivity.class).putExtra("data",dataModelList.get(getAdapterPosition())));
+                }
+            });
 
         }
     }

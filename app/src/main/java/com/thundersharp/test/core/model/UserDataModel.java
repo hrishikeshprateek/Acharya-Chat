@@ -1,6 +1,8 @@
 package com.thundersharp.test.core.model;
 
-public class UserDataModel {
+import java.io.Serializable;
+
+public class UserDataModel implements Serializable {
 
     public UserDataModel(){}
 
