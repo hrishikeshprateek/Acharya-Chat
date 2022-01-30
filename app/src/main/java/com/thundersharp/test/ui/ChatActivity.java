@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thundersharp.test.R;
 import com.thundersharp.test.core.adapters.ChatRecyclerAdapter;
 import com.thundersharp.test.core.model.ChatMessageModel;
+import com.thundersharp.test.core.model.LastMessageModel;
 import com.thundersharp.test.core.model.UserDataModel;
 import com.thundersharp.test.core.util.Constants;
 
@@ -212,13 +213,31 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.hasChild(tokenType1)){
+
                             FirebaseDatabase
                                     .getInstance()
                                     .getReference(Constants.DATABASE_NODE_CHAT_NODE)
                                     .child(tokenType1)
                                     .child(chatMessageModel.getKey())
                                     .setValue(chatMessageModel);
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getSenderUid())
+                                    .child(tokenType1)
+                                    .setValue(new LastMessageModel(tokenType1,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getRecieverUid())
+                                    .child(tokenType1)
+                                    .setValue(new LastMessageModel(tokenType1,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
+
                         }else if (snapshot.hasChild(tokenType2)){
+
                             FirebaseDatabase
                                     .getInstance()
                                     .getReference(Constants.DATABASE_NODE_CHAT_NODE)
@@ -226,7 +245,39 @@ public class ChatActivity extends AppCompatActivity {
                                     .child(chatMessageModel.getKey())
                                     .setValue(chatMessageModel);
 
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getSenderUid())
+                                    .child(tokenType2)
+                                    .setValue(new LastMessageModel(tokenType2,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getRecieverUid())
+                                    .child(tokenType2)
+                                    .setValue(new LastMessageModel(tokenType2,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
+
                         }else {
+
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getSenderUid())
+                                    .child(tokenType1)
+                                    .setValue(new LastMessageModel(tokenType1,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
+                            FirebaseDatabase
+                                    .getInstance()
+                                    .getReference("USERS_LAST_MESSAGES")
+                                    .child(chatMessageModel.getRecieverUid())
+                                    .child(tokenType1)
+                                    .setValue(new LastMessageModel(tokenType1,chatMessageModel.getMessage(),chatMessageModel.getSenderName(),chatMessageModel.getSenderUid()));
+
                             FirebaseDatabase
                                     .getInstance()
                                     .getReference(Constants.DATABASE_NODE_CHAT_NODE)

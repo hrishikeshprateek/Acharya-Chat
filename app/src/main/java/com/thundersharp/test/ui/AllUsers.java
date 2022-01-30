@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ import java.util.List;
 public class AllUsers extends Fragment {
 
     private RecyclerView recyclerView;
+    ShimmerFrameLayout shimmer_view_container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +38,9 @@ public class AllUsers extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_all_users, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
+        shimmer_view_container = view.findViewById(R.id.shimmer_view_container);
+
+        shimmer_view_container.startShimmer();
         List<UserDataModel> userDataModels = new ArrayList<>();
 
         FirebaseDatabase
@@ -54,6 +59,7 @@ public class AllUsers extends Fragment {
                             }
                             AllUsersAdapter allUsersAdapter = new AllUsersAdapter(userDataModels);
                             recyclerView.setAdapter(allUsersAdapter);
+                            shimmer_view_container.setVisibility(View.GONE);
                         }else
                             Toast.makeText(getActivity(), "ERROR : NO USERS FOUND", Toast.LENGTH_SHORT).show();
                     }
@@ -61,6 +67,7 @@ public class AllUsers extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        shimmer_view_container.setVisibility(View.GONE);
                     }
                 });
 
