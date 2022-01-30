@@ -18,11 +18,13 @@
         app:subtitle="Email"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
         android:layout_above="@id/bottomMessageHolder"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <RelativeLayout
         android:id="@+id/bottomMessageHolder"

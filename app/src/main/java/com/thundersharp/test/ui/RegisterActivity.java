@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 import com.thundersharp.test.MainActivity;
 import com.thundersharp.test.R;
@@ -73,6 +75,20 @@ public class RegisterActivity extends AppCompatActivity {
                                     UserDataModel userDataModel = new UserDataModel(name.getText().toString(),
                                             email.getText().toString(),
                                             authResult.getUser().getUid());
+
+                                    UserProfileChangeRequest builder = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(name.getText().toString())
+                                            .build();
+                                    FirebaseAuth
+                                            .getInstance()
+                                            .getCurrentUser()
+                                            .updateProfile(builder)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                }
+                                            });
+
                                     updateDataToFirebase(userDataModel);
 
                                 }
